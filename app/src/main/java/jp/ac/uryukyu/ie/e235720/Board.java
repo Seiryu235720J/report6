@@ -158,9 +158,6 @@ public class Board {
             System.out.println(blackNum + "対" + whiteNum + "でAIの勝利です！");
         }
     }
-	public String[][] getBoard() {
-        return board;
-    }
 
     public ArrayList<RevList> getBlackList() {
         return blackList;
@@ -168,5 +165,10 @@ public class Board {
 
     public ArrayList<RevList> getWhiteList() {
         return whiteList;
+    }
+
+    public String[][] getBoard() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBoard'");
     }
 }

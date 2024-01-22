@@ -1,11 +1,11 @@
 package jp.ac.uryukyu.ie.e235720;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Scanner;
 
 public class GameLogic {
-    
+
     private static final Scanner sc = new Scanner(System.in);
 
     private Board board;
@@ -33,49 +33,51 @@ public class GameLogic {
 
     private boolean processPlayerTurn(String symbol) {
         board.print();
-        System.out.println("あなたの番です");
+        System.out.println("Player's turn: " + (symbol.equals("●") ? "Black" : "White"));
         board.findSetPoints(symbol);
 
-        if (board.getSetPoints(symbol).size() != 0) {
-            Point set = getUserInput(symbol);
+        List<Point> setPoints = board.getSetPoints(symbol);
+        if (!setPoints.isEmpty()) {
+            Point set = getUserInput(setPoints);
             placeStone(symbol, set);
             return true;
         } else {
-            System.out.println("あなたは石を置く場所がありませんでした");
+            System.out.println("No valid moves for " + (symbol.equals("●") ? "Black" : "White"));
             return false;
         }
     }
 
-    private Point getUserInput(String symbol) {
+    private Point getUserInput(List<Point> setPoints) {
         Point set = null;
-        while (true) {
-            String temp = sc.next();
-            if (isValidInput(temp)) {
-                int y = temp.charAt(0) - '0';
-                int x = temp.charAt(1) - 'a' + 1;
-                if (board.containSetPoints(y, x)) {
-                    set = new Point(y, x);
-                    break;
+        while (set == null) {
+            System.out.print("Enter your move (e.g., 4d): ");
+            String input = sc.next();
+            if (isValidInput(input)) {
+                int y = input.charAt(0) - '0';
+                int x = input.charAt(1) - 'a' + 1;
+                Point userInput = new Point(y, x);
+                if (setPoints.contains(userInput)) {
+                    set = userInput;
                 } else {
-                    System.out.println("その場所には石を置くことができません");
+                    System.out.println("You cannot place a stone there.");
                 }
+            } else {
+                System.out.println("Invalid input.");
             }
         }
         return set;
     }
 
     private boolean isValidInput(String input) {
-        char c0 = input.charAt(0), c1 = input.charAt(1);
-        return (c1 >= 'a' && c1 <= 'h') &&
-                (input.length() == 2) &&
-                (c0 >= '1' && c0 <= '8') &&
-                (c1 >= 'a' && c1 <= 'h');
+        return (input.length() == 2) &&
+                (input.charAt(0) >= '1' && input.charAt(0) <= '8') &&
+                (input.charAt(1) >= 'a' && input.charAt(1) <= 'h');
     }
 
     private void placeStone(String symbol, Point set) {
         board.revStone(symbol, set.getY(), set.getX());
-        System.out.println("---------------------------------------------------");
-        System.out.println("あなたは " + set + " に石を置きました");
+        System.out.println("-----------------------------------------------");
+        System.out.println("Placed a stone at " + set);
         board.setStone(symbol, set);
     }
 }

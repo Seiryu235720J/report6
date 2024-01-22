@@ -2,7 +2,6 @@ package jp.ac.uryukyu.ie.e235720;
 
 import java.util.ArrayList;
 
-
 public class Stone {
 
     private Board board;
@@ -23,10 +22,5 @@ public class Stone {
                 return;
             }
         }
-
-       
-
-
     }
-
 }
