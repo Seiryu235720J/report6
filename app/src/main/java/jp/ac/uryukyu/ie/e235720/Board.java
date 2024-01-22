@@ -2,6 +2,8 @@ package jp.ac.uryukyu.ie.e235720;
 
 import java.util.ArrayList;
 
+import java.util.List;
+
 public class Board {
 
 	private String[][] board = {
@@ -119,6 +121,22 @@ public class Board {
 	}
 
 	//石を裏返すメソッド
+
+	public List<Point> getSetPoints(String symbol) {
+        List<Point> setPoints = new ArrayList<>();
+        if (symbol.equals("●")) {
+            for (RevList revList : blackList) {
+                setPoints.add(revList.getCenterPoint());
+            }
+        } else if (symbol.equals("○")) {
+            for (RevList revList : whiteList) {
+                setPoints.add(revList.getCenterPoint());
+            }
+        }
+        return setPoints;
+    }
+	
+
 	public void revStone (String stone, int y, int x) {
 		if (stone.equals("○")) {
 			for (int i=0; i<whiteList.size(); i++) {
