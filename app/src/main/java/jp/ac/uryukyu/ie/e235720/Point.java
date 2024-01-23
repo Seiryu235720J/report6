@@ -1,5 +1,9 @@
 package jp.ac.uryukyu.ie.e235720;
 
+/*二次元平面上の点を表現するためのシンプルなクラス
+ * y は縦軸の座標を、x は横軸の座標を表す
+ */
+
 public class Point {
 	
 	private int y, x;

@@ -3,6 +3,8 @@ package jp.ac.uryukyu.ie.e235720;
 import java.util.ArrayList;
 import java.util.List;
 
+/*ゲームの盤面を表す2次元配列。"●" は黒石、"○" は白石を表し、"・" は空きマスを表す */
+
 public class Board {
 
     private String[][] board = {
@@ -36,6 +38,8 @@ public class Board {
     public String getEnemyStone(String stone) {
         return (stone.equals("○")) ? "●" : "○";
     }
+
+	/*指定された石の裏返し可能な場所を探し、whiteList または blackList に追加する */
 
     public void findSetPoints(String stone) {
         if (stone.equals("●")) {
@@ -106,6 +110,8 @@ public class Board {
         return false;
     }
 
+	/*指定された座標を登録する */
+
     public List<Point> getSetPoints(String symbol) {
         List<Point> setPoints = new ArrayList<>();
         if (symbol.equals("●")) {
@@ -136,6 +142,8 @@ public class Board {
             System.out.println();
         }
     }
+
+	/*打つ場所がなくなった時に結果を出力する */
 
     public void result() {
         System.out.println();

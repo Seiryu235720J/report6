@@ -2,6 +2,8 @@ package jp.ac.uryukyu.ie.e235720;
 
 import java.util.ArrayList;
 
+/*オセロの盤面上で石を裏返す際の情報を管理するためのクラス */
+
 public class RevList {
 
     private Point center;
@@ -14,6 +16,8 @@ public class RevList {
     public Point getCenterPoint() {
         return new Point(center.getY(), center.getX());
     }
+
+	/*裏返す対象の座標をリストに追加するメソッド */
 
     public void addRevPoint(ArrayList<Point> list) {
         revPoints.addAll(list);
