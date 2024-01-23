@@ -38,7 +38,7 @@ public class GameLogic {
         return board.getSetPoints(symbol);
     }
 
-    private boolean processPlayerTurn(String symbol) {
+    boolean processPlayerTurn(String symbol) {
         board.print();
         System.out.println("あなたの番です");
         board.findSetPoints(symbol);
@@ -75,7 +75,7 @@ public class GameLogic {
             return set;
         }
 
-        private boolean isValidInput(String input) {
+        boolean isValidInput(String input) {
             return (input.length() == 2) &&
                     (input.charAt(0) >= '1' && input.charAt(0) <= '8') &&
                     (input.charAt(1) >= 'a' && input.charAt(1) <= 'h');
